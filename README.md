@@ -9,3 +9,7 @@ However, extensive revisions and additions have been made:
 * Deactivated elements are displayed in the same way.
 
 Nevertheless, this is a working status. Many controls still need to be revised.
+
+![Light](./doc/Light.png)
+
+![Dark](./doc/Dark.png)
