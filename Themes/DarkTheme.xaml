@@ -1,0 +1,119 @@
+﻿<!--https://github.com/AngryCarrot789/WPFDarkTheme-->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" >
+    
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ThemeBase.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!--https://docs.telerik.com/devtools/wpf/styling-and-appearance/themes-suite/visualstudio2013-->
+    <!--VisualStudio2013 Palette-->
+  
+    <!--#region Brushes, which are different in the palettes-->
+    <!--AccentBrush - another accent brush, usually used for border of elements in their MouseOver, Active, Toggled or Focused state.-->
+    <!--<Color x:Key="AccentColor"              >#FF007ACC</Color>-->
+
+    <!--MarkerBrush - the main brush used for text color, also path's fill in MouseOver state-->
+    <Color x:Key="MarkerColor"              >#FFF1F1F1</Color>
+
+    <!--StrongBrush - paths' and ticks' fill in Normal state, also ReadOnly text-->
+    <Color x:Key="StrongColor"              >#FF999999</Color>
+
+    <!--MainBrush - brush used for background of controls with direct input such as 
+        TextBox, MaskedInput, Editable ComboBox, AutoCompleteBox, PasswordBox. 
+        Also used as main background of elements that has different content with unpredictable background 
+        (PrimaryBrush or AlternativeBrush).-->
+    <Color x:Key="MainColor"                >#FF1E1E1E</Color>
+
+    <!--PrimaryBrush - brush used for background of most of the controls that have no direct input in their normal state.-->
+    <Color x:Key="PrimaryColor"             >#FF2D2D30</Color>
+
+    <!--AlternativeBrush - brush used as alternative background of PrimaryBrush. Also used as background of Popups and DropDowns.-->
+    <Color x:Key="AlternativeColor"         >#FF252526</Color>
+
+    <!--MouseOverBrush - brush used for background of elements that are in MouseOver state.-->
+    <Color x:Key="MouseOverColor"           >#FF3E3E40</Color>
+
+    <!--BasicBrush - brush widely used for border color of controls in their Normal state.-->
+    <Color x:Key="BasicColor"               >#FF3F3F46</Color>
+
+    <!--SemiBasicBrush - the same brush as BasicBrush with 40% opacity, used for background of elements that are in MouseOver state.-->
+    <Color x:Key="SemiBasicColor"           >#663F3F46</Color>
+
+    <!--HeaderBrush - brush used for background of headers-->
+    <Color x:Key="HeaderColor"              >#FF007ACC</Color>
+
+    <!--Additional brush is introduced rarely used for elements in Disabled state:-->
+    <Color x:Key="ComplementaryColor"       >#FF434346</Color>
+
+    <!--ReadOnlyBackgroundBrush: Used as a background of elements that are in a read-only state.-->
+    <Color x:Key="ReadOnlyBackgroundColor"  >#FF252526</Color>
+
+    <!--ReadOnlyBorderBrush: Used in borders inside elements that are in a read-only state.-->
+    <Color x:Key="ReadOnlyBorderColor"      >#FF3F3F46</Color>
+
+    <!--Additional color-->
+    <Color x:Key="DefaultForegroundColor"   >#FFF1F1F1</Color>
+    <Color x:Key="DarkForegroundColor"      >#FF1E1E1E</Color>
+    <Color x:Key="DisabledForegroundColor"  >#66F1F1F1</Color>
+    <!--#endregion-->
+    
+    <!--#region OLD-->
+    
+    <!-- Window Colors. Background, Border and TitleBar colours. -->
+
+    <SolidColorBrush x:Key="BackgroundColor"                            Color="{StaticResource MainColor}" />
+    <SolidColorBrush x:Key="WindowBorderColor"                          Color="{StaticResource BasicColor}" />
+    <SolidColorBrush x:Key="WindowTitleColor"                           Color="{StaticResource HeaderColor}" />
+    <!-- Control colour themes. dont mess with em okay unless youre good at styles -->
+    <!-- Complete DarkTheme Colors -->
+    <SolidColorBrush x:Key="ContainerBackground"                        Color="{StaticResource AlternativeColor}" />
+    <SolidColorBrush x:Key="ContainerBorderBrush"                       Color="{StaticResource BasicColor}" />
+
+    <SolidColorBrush x:Key="ControlDefaultForeground"                   Color="{StaticResource DefaultForegroundColor}" />
+    <SolidColorBrush x:Key="ControlDisabledForeground"                  Color="{StaticResource DisabledForegroundColor}" />
+    <SolidColorBrush x:Key="ControlDarkForeground"                      Color="{StaticResource DarkForegroundColor}" />
+
+    <SolidColorBrush x:Key="ControlDarkerBackground"                    Color="{StaticResource AlternativeColor}" />
+    <SolidColorBrush x:Key="ControlDarkerBorderBrush"                   Color="{StaticResource BasicColor}" />
+    <SolidColorBrush x:Key="ControlDefaultBackground"                   Color="{StaticResource PrimaryColor}" />
+    <SolidColorBrush x:Key="ControlDefaultBorderBrush"                  Color="{StaticResource BasicColor}" />
+    <SolidColorBrush x:Key="ControlBrightDefaultBackground"             Color="{StaticResource AlternativeColor}" />
+    <SolidColorBrush x:Key="ControlBrightDefaultBorderBrush"            Color="{StaticResource BasicColor}" />
+    <SolidColorBrush x:Key="ControlDisabledBackground"                  Color="{StaticResource ReadOnlyBackgroundColor}" />
+    <SolidColorBrush x:Key="ControlDisabledBorderBrush"                 Color="{StaticResource ReadOnlyBorderColor}" />
+    <SolidColorBrush x:Key="ControlMouseOverBackground"                 Color="{StaticResource MouseOverColor}" />
+    <SolidColorBrush x:Key="ControlMouseOverBorderBrush"                Color="{StaticResource SemiBasicColor}" />
+    <SolidColorBrush x:Key="ControlSelectedBackground"                  Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="ControlSelectedBorderBrush"                 Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="ControlSelectedMouseOverBackground"         Color="{StaticResource AccentDarkColor}" />
+    <SolidColorBrush x:Key="ControlSelectedMouseOverBorderBrush"        Color="{StaticResource AccentDarkColor}" />
+    <SolidColorBrush x:Key="ControlGlythColor"                          Color="{StaticResource MarkerColor}" />
+    <SolidColorBrush x:Key="ControlMouseOverGlythColor"                 Color="{StaticResource MarkerColor}" />
+    <SolidColorBrush x:Key="ControlSelectedGlythColor"                  Color="{StaticResource MarkerColor}" />
+    <SolidColorBrush x:Key="ControlDisabledGlythColor"                  Color="{StaticResource ComplementaryColor}" />
+
+    <!-- Colorful theme  Colors -->
+
+    <SolidColorBrush x:Key="ControlPrimaryDarkerBackground"             Color="{StaticResource AccentDarkColor}" />
+    <SolidColorBrush x:Key="ControlPrimaryDarkerBorderBrush"            Color="{StaticResource AccentDarkColor}" />
+    <SolidColorBrush x:Key="ControlPrimaryDefaultBackground"            Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="ControlPrimaryDefaultBorderBrush"           Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="ControlPrimaryBrightDefaultBackground"      Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="ControlPrimaryBrightDefaultBorderBrush"     Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="ControlPrimaryDisabledBackground"           Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="ControlPrimaryDisabledBorderBrush"          Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="ControlPrimaryMouseOverBackground"          Color="{StaticResource MouseOverColor}" />
+    <SolidColorBrush x:Key="ControlPrimaryMouseOverBorderBrush"         Color="{StaticResource MouseOverColor}" />
+    <SolidColorBrush x:Key="ControlPrimarySelectedBackground"           Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="ControlPrimarySelectedBorderBrush"          Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="ControlPrimarySelectedMouseOverBackground"  Color="{StaticResource AccentDarkColor}" />
+    <SolidColorBrush x:Key="ControlPrimarySelectedMouseOverBorderBrush" Color="{StaticResource AccentDarkColor}" />
+    <SolidColorBrush x:Key="ControlPrimaryCaretSelectionBackground"     Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="ControlPrimaryCaretBackground"              Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="ControlPrimaryGlythColor"                   Color="{StaticResource MarkerColor}" />
+    <SolidColorBrush x:Key="ControlPrimaryMouseOverGlythColor"          Color="{StaticResource MarkerColor}" />
+    <SolidColorBrush x:Key="ControlPrimarySelectedGlythColor"           Color="{StaticResource MarkerColor}" />
+    <SolidColorBrush x:Key="ControlPrimarySelectedMouseOverGlythColor"  Color="{StaticResource MarkerColor}" />
+    <!--#endregion-->
+</ResourceDictionary>
