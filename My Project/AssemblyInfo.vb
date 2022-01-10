@@ -1,8 +1,8 @@
 ﻿Imports System
-Imports System.Reflection
-Imports System.Runtime.InteropServices
 Imports System.Globalization
+Imports System.Reflection
 Imports System.Resources
+Imports System.Runtime.InteropServices
 Imports System.Windows
 
 ' Allgemeine Informationen über eine Assembly werden über die folgenden
@@ -12,11 +12,11 @@ Imports System.Windows
 ' Werte der Assemblyattribute überprüfen
 
 <Assembly: AssemblyTitle("EasyWPFThemeLib")>
-<Assembly: AssemblyDescription("A simple WPF Theme Library")>
+<Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("")>
 <Assembly: AssemblyProduct("EasyWPFThemeLib")>
-<Assembly: AssemblyCopyright("Gert Michael (Kruemelino) © 2022")>
-<Assembly: AssemblyTrademark("")> 
+<Assembly: AssemblyCopyright("Copyright ©  2022")>
+<Assembly: AssemblyTrademark("")>
 <Assembly: ComVisible(false)>
 
 'Um mit dem Erstellen lokalisierbarer Anwendungen zu beginnen, legen Sie
@@ -42,7 +42,7 @@ Imports System.Windows
 
 
 'Die folgende GUID wird für die typelib-ID verwendet, wenn dieses Projekt für COM verfügbar gemacht wird.
-<Assembly: Guid("3a2a05c9-c7e3-4d1b-8078-9997a0a52582")> 
+<Assembly: Guid("bd5a5e08-9c5f-4a63-8205-cb64dae26b2c")>
 
 ' Versionsinformationen für eine Assembly bestehen aus den folgenden vier Werten:
 '

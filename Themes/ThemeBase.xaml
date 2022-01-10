@@ -941,9 +941,9 @@
     
     <!--#region ComboBox and ComboBoxItems-->
     <Style x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
-        <Setter Property="Background" Value="{DynamicResource ControlDefaultBackground}"/>
+        <!--<Setter Property="Background" Value="{DynamicResource ControlDefaultBackground}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource ControlDefaultBorderBrush}"/>
-        <Setter Property="Foreground" Value="{DynamicResource ControlDefaultForeground}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ControlDefaultForeground}"/>-->
         <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="IsTabStop" Value="False"/>
         <Setter Property="Focusable" Value="False"/>
@@ -958,13 +958,16 @@
                             SnapsToDevicePixels="True"
                             CornerRadius="{StaticResource DefaultCornerRadius}">
                         <Border x:Name="splitBorder"
-                                BorderBrush="Transparent" BorderThickness="1 0 0 0" 
+                                BorderBrush="Transparent" BorderThickness="1,0,0,0" 
                                 HorizontalAlignment="Right" Margin="0" 
                                 SnapsToDevicePixels="True" 
                                 Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}"
                                 CornerRadius="{StaticResource DefaultCornerRadiusRight}">
                             <Path x:Name="arrow" Data="F1 M 0,0 L 2.667,2.66665 L 5.3334,0 L 5.3334,-1.78168 L 2.6667,0.88501 L0,-1.78168 L0,0 Z" 
-                                  Fill="{DynamicResource ControlGlythColor}" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center"/>
+                                  Fill="{DynamicResource ControlGlythColor}" 
+                                  HorizontalAlignment="Center" 
+                                  Margin="0" 
+                                  VerticalAlignment="Center"/>
                         </Border>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -1002,7 +1005,7 @@
                             <Setter Property="BorderBrush" TargetName="splitBorder" Value="{DynamicResource ControlPrimaryMouseOverBorderBrush}"/>
                         </MultiDataTrigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Fill" TargetName="arrow" Value="{DynamicResource ControlSelectedBackground}"/>
+                            <Setter Property="Fill" TargetName="arrow" Value="{DynamicResource ControlSelectedGlythColor}"/>
                         </Trigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
@@ -1022,6 +1025,7 @@
                             <Setter Property="Background" TargetName="splitBorder" Value="{DynamicResource ControlPrimarySelectedBackground}"/>
                             <Setter Property="BorderBrush" TargetName="splitBorder" Value="{DynamicResource ControlPrimarySelectedBorderBrush}"/>
                         </MultiDataTrigger>
+
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Fill" TargetName="arrow" Value="{DynamicResource ControlDisabledGlythColor}"/>
                         </Trigger>
@@ -1122,7 +1126,7 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
     
-    <Style x:Key="ComboBoxEditableTextBox" TargetType="{x:Type TextBox}">
+    <Style x:Key="ComboBoxEditableTextBox" TargetType="{x:Type TextBox}">       
         <Setter Property="Foreground" Value="{DynamicResource ControlDefaultForeground}"/>
         <Setter Property="SelectionBrush" Value="{DynamicResource ControlPrimaryCaretSelectionBackground}"/>
         <Setter Property="SelectionOpacity" Value="0.7"/>
@@ -1134,12 +1138,11 @@
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <Border x:Name="border" 
-                            BorderBrush="{TemplateBinding BorderBrush}" 
-                            BorderThickness="{TemplateBinding BorderThickness}" 
                             Background="{TemplateBinding Background}" 
                             SnapsToDevicePixels="True"
                             CornerRadius="{StaticResource DefaultCornerRadiusLeft}" >
@@ -1151,7 +1154,7 @@
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
-        </Setter>
+        </Setter>        
     </Style>
     
     <ControlTemplate x:Key="ComboBoxEditableTemplate" TargetType="{x:Type ComboBox}">
@@ -1190,16 +1193,17 @@
                 </Themes:SystemDropShadowChrome>
             </Popup>
             
-            <ToggleButton x:Name="toggleButton" 
+            <ToggleButton x:Name="toggleButton"
+                          Style="{StaticResource ComboBoxToggleButton}"
                           BorderBrush="{TemplateBinding BorderBrush}"
                           BorderThickness="{TemplateBinding BorderThickness}"                           
                           Background="{TemplateBinding Background}" 
                           Grid.ColumnSpan="2" 
-                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                          Style="{StaticResource ComboBoxToggleButton}"/>
-            
+                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
+            <!---->
             <Border x:Name="border"
-                    Background="{DynamicResource BackgroundColor}" 
+                    Background="{DynamicResource BackgroundColor}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
                     Margin="{TemplateBinding BorderThickness}"
                     CornerRadius="{StaticResource DefaultCornerRadius}">
                 <TextBox x:Name="PART_EditableTextBox"
@@ -1214,9 +1218,9 @@
                 <Setter Property="Background" TargetName="PART_EditableTextBox" Value="{DynamicResource ControlDisabledBackground}"/>
                 <Setter Property="Foreground" TargetName="PART_EditableTextBox" Value="{DynamicResource ControlDisabledForeground}"/>
             </Trigger>
-            <Trigger Property="IsKeyboardFocusWithin" Value="True">
-                <Setter Property="Foreground" Value="Black"/>
-            </Trigger>
+            <!--<Trigger SourceName="PART_EditableTextBox" Property="IsFocused"  Value="True">
+                <Setter Property="BorderBrush" Value="lime" TargetName="toggleButton"/>
+            </Trigger>-->
             <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="True">
                 <Setter Property="Margin" TargetName="shadow" Value="0,0,5,5"/>
                 <Setter Property="Color" TargetName="shadow" Value="#71000000"/>
@@ -1258,7 +1262,7 @@
                 <Setter Property="IsTabStop" Value="False"/>
                 <Setter Property="Padding" Value="2"/>
                 <Setter Property="Template" Value="{StaticResource ComboBoxEditableTemplate}"/>
-            </Trigger>
+            </Trigger>            
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Foreground" Value="{DynamicResource ControlDisabledForeground}"/>
             </Trigger>
@@ -6081,6 +6085,7 @@ Stretch="Uniform"/>
     <Style x:Key="CustomToolWindowStyle" TargetType="{x:Type Window}">
         <Setter Property="BorderBrush" Value="{DynamicResource WindowTitleColor}" />
         <Setter Property="Background" Value="{DynamicResource BackgroundColor}" />
+        <Setter Property="Foreground" Value="{DynamicResource ControlDefaultForeground}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="ResizeMode" Value="NoResize"/>
         <Setter Property="WindowStyle" Value="SingleBorderWindow"/>

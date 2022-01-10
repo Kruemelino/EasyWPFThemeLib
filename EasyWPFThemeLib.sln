@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "EasyWPFThemeLib", "EasyWPFThemeLib.vbproj", "{44775C00-C7AE-4BC1-A15E-C58E1C57655C}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "EasyWPFThemeLib", "EasyWPFThemeLib.vbproj", "{BBF0F12A-9AC2-4B8B-A572-F71C61B9AFF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{44775C00-C7AE-4BC1-A15E-C58E1C57655C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{44775C00-C7AE-4BC1-A15E-C58E1C57655C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{44775C00-C7AE-4BC1-A15E-C58E1C57655C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{44775C00-C7AE-4BC1-A15E-C58E1C57655C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBF0F12A-9AC2-4B8B-A572-F71C61B9AFF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBF0F12A-9AC2-4B8B-A572-F71C61B9AFF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBF0F12A-9AC2-4B8B-A572-F71C61B9AFF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBF0F12A-9AC2-4B8B-A572-F71C61B9AFF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {8FCC706A-3F2F-43BE-B7FF-DD8D55769A86}
+		SolutionGuid = {8505780C-F986-4BD0-8E9A-16349D1F5A07}
 	EndGlobalSection
 EndGlobal
