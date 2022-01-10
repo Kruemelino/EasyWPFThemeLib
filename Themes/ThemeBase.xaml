@@ -1140,7 +1140,7 @@
                     <Border x:Name="border" 
                             BorderBrush="{TemplateBinding BorderBrush}" 
                             BorderThickness="{TemplateBinding BorderThickness}" 
-                            Background="{DynamicResource BackgroundColor}" 
+                            Background="{TemplateBinding Background}" 
                             SnapsToDevicePixels="True"
                             CornerRadius="{StaticResource DefaultCornerRadiusLeft}" >
                         <ScrollViewer x:Name="PART_ContentHost" 
@@ -1160,6 +1160,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0"/>
             </Grid.ColumnDefinitions>
+            
             <Popup x:Name="PART_Popup" AllowsTransparency="True" Grid.ColumnSpan="2" 
                    IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" 
                    PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}"
@@ -1188,6 +1189,7 @@
                     </Border>
                 </Themes:SystemDropShadowChrome>
             </Popup>
+            
             <ToggleButton x:Name="toggleButton" 
                           BorderBrush="{TemplateBinding BorderBrush}"
                           BorderThickness="{TemplateBinding BorderThickness}"                           
@@ -1197,19 +1199,19 @@
                           Style="{StaticResource ComboBoxToggleButton}"/>
             
             <Border x:Name="border"
-                    Background="{TemplateBinding Background}" 
+                    Background="{DynamicResource BackgroundColor}" 
                     Margin="{TemplateBinding BorderThickness}"
                     CornerRadius="{StaticResource DefaultCornerRadius}">
                 <TextBox x:Name="PART_EditableTextBox"
                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                          IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" 
-                         Style="{StaticResource ComboBoxEditableTextBox}"
-                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                         Style="{StaticResource ComboBoxEditableTextBox}" />
             </Border>
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Background" TargetName="PART_EditableTextBox" Value="red"/>
+                <Setter Property="Background" TargetName="PART_EditableTextBox" Value="{DynamicResource ControlDisabledBackground}"/>
                 <Setter Property="Foreground" TargetName="PART_EditableTextBox" Value="{DynamicResource ControlDisabledForeground}"/>
             </Trigger>
             <Trigger Property="IsKeyboardFocusWithin" Value="True">
