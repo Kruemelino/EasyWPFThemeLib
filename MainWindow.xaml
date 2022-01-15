@@ -154,8 +154,41 @@
         <ToggleButton Grid.Row="3" Grid.Column="8" Content="Toggle" Margin="5" IsEnabled="False"/>
 
 
-        <DataGrid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="1" Margin="5" 
-                  ItemsSource="{Binding DummyDataGridData, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+        <DataGrid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="1" Margin="5" AutoGenerateColumns="False"
+                  ItemsSource="{Binding DummyDataGridData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+>
+
+            <DataGrid.Columns>
+                <!--<DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <RadioButton GroupName="Telefone" HorizontalAlignment="Center" 
+                                             IsChecked="{Binding Path=StdTelefon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                             Style="{StaticResource CheckBoxRadioButton}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>-->
+
+                <DataGridCheckBoxColumn Binding="{Binding Path=DummyBool}" Header="DataGridCheckBoxColumn"/>
+                <DataGridTextColumn Binding="{Binding Path=DummyString}" Header="DataGridTextColumn"/>
+                <DataGridComboBoxColumn Header="DataGridComboBoxColumn" DisplayMemberPath="Name">
+                    <DataGridComboBoxColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="ComboBox.ItemsSource" Value="{Binding Path=DummyList}" />
+                        </Style>
+                    </DataGridComboBoxColumn.ElementStyle>
+                    <DataGridComboBoxColumn.EditingElementStyle>
+                        <Style>
+                            <Setter Property="ComboBox.ItemsSource" Value="{Binding Path=DummyList}" />
+                        </Style>
+                    </DataGridComboBoxColumn.EditingElementStyle>
+                </DataGridComboBoxColumn>
+
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
 
         <DataGrid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="1" Margin="5"  IsEnabled="False" 
                   ItemsSource="{Binding DummyDataGridData, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>

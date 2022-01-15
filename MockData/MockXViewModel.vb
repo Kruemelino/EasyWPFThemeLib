@@ -12,11 +12,14 @@
     End Property
 
     Public Sub New()
+
+        Dim dl As New ObservableCollectionEx(Of String) From {"A", "B"}
+
         DummyDataGridData = New ObservableCollectionEx(Of DummyData) From {
-            New DummyData With {.DummyBool = False, .DummyString = "TestString1"},
-            New DummyData With {.DummyBool = True, .DummyString = "TestString1"},
-            New DummyData With {.DummyBool = False, .DummyString = "Teststring3"},
-            New DummyData With {.DummyBool = False, .DummyString = "TestString1"}
+            New DummyData With {.DummyBool = False, .DummyString = "TestString1", .DummyList = dl},
+            New DummyData With {.DummyBool = True, .DummyString = "TestString1", .DummyList = dl},
+            New DummyData With {.DummyBool = False, .DummyString = "Teststring3", .DummyList = dl},
+            New DummyData With {.DummyBool = False, .DummyString = "TestString1", .DummyList = dl}
         }
 
     End Sub
@@ -46,5 +49,14 @@ Public Class DummyData
         End Set
     End Property
 
+    Private _DummyList As ObservableCollectionEx(Of String)
+    Public Property DummyList As ObservableCollectionEx(Of String)
+        Get
+            Return _DummyList
+        End Get
+        Set
+            SetProperty(_DummyList, Value)
+        End Set
+    End Property
 End Class
 
