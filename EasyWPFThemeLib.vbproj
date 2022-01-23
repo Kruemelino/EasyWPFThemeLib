@@ -71,6 +71,7 @@
     <Compile Include="Converter\Converter.xaml.vb">
       <DependentUpon>Converter.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helper\DataGridCheckBoxColumnFixer.vb" />
     <Compile Include="Themes\ThemeBase.xaml.vb">
       <DependentUpon>ThemeBase.xaml</DependentUpon>
     </Compile>

@@ -13,13 +13,13 @@
 
     Public Sub New()
 
-        Dim dl As New ObservableCollectionEx(Of String) From {"A", "B"}
+        Dim dl As New ObservableCollectionEx(Of String) From {"ComboBoxText1", "ComboBoxText2", "ComboBoxText3"}
 
         DummyDataGridData = New ObservableCollectionEx(Of DummyData) From {
             New DummyData With {.DummyBool = False, .DummyString = "TestString1", .DummyList = dl},
-            New DummyData With {.DummyBool = True, .DummyString = "TestString1", .DummyList = dl},
+            New DummyData With {.DummyBool = True, .DummyString = "TestString2", .DummyList = dl},
             New DummyData With {.DummyBool = False, .DummyString = "Teststring3", .DummyList = dl},
-            New DummyData With {.DummyBool = False, .DummyString = "TestString1", .DummyList = dl}
+            New DummyData With {.DummyBool = False, .DummyString = "TestString4", .DummyList = dl}
         }
 
     End Sub
@@ -56,6 +56,16 @@ Public Class DummyData
         End Get
         Set
             SetProperty(_DummyList, Value)
+        End Set
+    End Property
+
+    Private _ComboBoxSelected As String
+    Public Property ComboBoxSelected As String
+        Get
+            Return _ComboBoxSelected
+        End Get
+        Set
+            SetProperty(_ComboBoxSelected, Value)
         End Set
     End Property
 End Class

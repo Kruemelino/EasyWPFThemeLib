@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary x:Class="ThemeBase" 
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
+                    xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
+                    xmlns:helpers="clr-namespace:EasyWPFThemeLib.Helpers">
     
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Converter/Converter.xaml"/>
@@ -1383,6 +1384,8 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
+    
     <!--#endregion-->
     
     <!--#region ContextMenu-->
@@ -1425,59 +1428,14 @@
     <!--#region DataGrid-->
     <!--https://gist.github.com/chrdavis/288d743362b963b875832cc493d2cc94-->
     <!--Style and template for the button in the upper left corner of the DataGrid.-->  
-    <Style x:Key="{ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}" TargetType="{x:Type Button}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Grid>
-                        <Rectangle
-                            x:Name="Border"
-                            Fill="{DynamicResource ControlDefaultBackground}"
-                            SnapsToDevicePixels="True"
-                            Stroke="{DynamicResource ControlBrightDefaultBorderBrush}" />
-                        <Polygon
-                            x:Name="Arrow"
-                            Margin="8,8,3,3"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Bottom"
-                            Fill="{DynamicResource ControlGlythColor}"
-                            Opacity="0.15"
-                            Points="0,10 10,10 10,0"
-                            Stretch="Uniform" />
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal" />
-                                <VisualState x:Name="MouseOver">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource ControlMouseOverBackground}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Pressed">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource ControlSelectedBackground}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Disabled">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow" Storyboard.TargetProperty="(UIElement.Visibility)">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+    <Style x:Key="{ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}" 
+           TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="BorderThickness" Value="0,0,1,1"/>
     </Style>
 
       <!--Style and template for the DataGrid.-->  
     <Style TargetType="{x:Type DataGrid}">
+        <Setter Property="helpers:DataGridCheckBoxColumnFixer.Fix" Value="True" />
         <Setter Property="Foreground" Value="{DynamicResource ControlDefaultForeground}" />
         <Setter Property="BorderBrush" Value="{DynamicResource ControlDefaultBorderBrush}" />
         <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource ControlDefaultBorderBrush}" />
@@ -1586,7 +1544,7 @@
         </Style.Triggers>
     </Style>
 
-      <!--Style and template for the DataGridCell.-->  
+    <!--Style and template for the DataGridCell.-->
     <Style TargetType="{x:Type DataGridCell}">
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Template">
@@ -1597,12 +1555,27 @@
                             BorderBrush="Transparent"
                             BorderThickness="1"
                             SnapsToDevicePixels="True">
+                        
                         <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="FocusStates">
                                 <VisualState x:Name="Unfocused" />
                                 <VisualState x:Name="Focused" />
                             </VisualStateGroup>
+
+                            <!--<VisualStateGroup x:Name="InteractionStates">
+                                <VisualState x:Name="Display" />
+                                <VisualState x:Name="Editing" >
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="border" 
+                                                                       Storyboard.TargetProperty="(Border.Background)">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource ValidationBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>-->
+                            
                             <VisualStateGroup x:Name="CurrentStates">
                                 <VisualState x:Name="Regular" />
                                 <VisualState x:Name="Current">
@@ -1672,52 +1645,23 @@
                                 Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.Row}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
                         </SelectiveScrollingGrid>
                         <VisualStateManager.VisualStateGroups>
+
+                            <!--https://github.com/dotnet/docs-desktop/blob/main/dotnet-desktop-guide/framework/wpf/controls/datagrid-styles-and-templates.md#datagridrow-states-->
                             <VisualStateGroup x:Name="CommonStates">
+
+                                <!--The default state.-->
                                 <VisualState x:Name="Normal" />
 
-                                  <!--Provide a different appearance for every other row.-->  
-                                <VisualState x:Name="Normal_AlternatingRow">
+                                <!--The mouse pointer is positioned over the row.-->
+                                <VisualState x:Name="MouseOver">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background)">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource ControlDefaultBackground}" />
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource ControlBrightDefaultBackground}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
 
-                                
-                                <!--In this example, a row in Editing or selected mode has an
-                                identical appearances. In other words, the states
-                                Normal_Selected, Unfocused_Selected, Normal_Editing,
-                                MouseOver_Editing, MouseOver_Unfocused_Editing,
-                                and Unfocused_Editing are identical.-->
-                                
-                                <VisualState x:Name="Normal_Selected">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background)">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource ControlPrimarySelectedBackground}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(TextBlock.Foreground)">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource ControlSelectedForeground}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-
-                                <VisualState x:Name="Unfocused_Selected">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background)">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource ControlDefaultBackground}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-
-                                <VisualState x:Name="Normal_Editing">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background)">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource ControlDefaultBackground}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-
+                                <!--The mouse pointer is positioned over the row and the row is in edit mode.-->
                                 <VisualState x:Name="MouseOver_Editing">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background)">
@@ -1726,35 +1670,7 @@
                                     </Storyboard>
                                 </VisualState>
 
-                                <VisualState x:Name="MouseOver_Unfocused_Editing">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background)">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource ControlPrimaryMouseOverBackground}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-
-                                <VisualState x:Name="Unfocused_Editing">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background)">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource ControlDefaultBackground}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-
-                                <VisualState x:Name="MouseOver">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background)">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource ControlPrimaryMouseOverBackground}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                
-                                <!--In this example, the appearance of a selected row
-                                that has the mouse over it is the same regardless of
-                                whether the row is selected.  In other words, the states
-                                MouseOver_Editing and MouseOver_Unfocused_Editing are identical.-->
-                                
+                                <!--The mouse pointer is positioned over the row and the row is selected.-->
                                 <VisualState x:Name="MouseOver_Selected">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background)">
@@ -1766,16 +1682,75 @@
                                     </Storyboard>
                                 </VisualState>
 
+                                <!--The mouse pointer is positioned over the row, the row is in edit mode, and does not have focus.-->
+                                <VisualState x:Name="MouseOver_Unfocused_Editing">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background)">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource ControlPrimaryMouseOverBackground}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+
+                                <!--The mouse pointer is positioned over the row, the row is selected, and does not have focus.-->
                                 <VisualState x:Name="MouseOver_Unfocused_Selected">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background)">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource ControlSelectedForeground}" />
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource ControlDarkerBackground}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(TextBlock.Foreground)">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource ControlSelectedForeground}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
+
+                                <!--The row is an alternating row.-->  
+                                <VisualState x:Name="Normal_AlternatingRow">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background)">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource ControlDefaultBackground}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+
+                                <!--The row is in edit mode.-->
+                                <VisualState x:Name="Normal_Editing">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background)">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource ControlDefaultBackground}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+
+                                <!--The row is selected.-->
+                                <VisualState x:Name="Normal_Selected">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background)">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource ControlPrimarySelectedBackground}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(TextBlock.Foreground)">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource ControlSelectedForeground}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                
+                                <!--The row is in edit mode and does not have focus.-->
+                                <VisualState x:Name="Unfocused_Editing">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background)">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource ControlDefaultBackground}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+
+                                <!--The row is selected and does not have focus.-->
+                                <VisualState x:Name="Unfocused_Selected">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background)">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource ControlDefaultBackground}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                     </Border>
@@ -1938,6 +1913,12 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="DataGridCheckBox" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource {x:Type CheckBox}}" >
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+
     <!--#endregion-->
 
     <!--#region DatePicker-->
