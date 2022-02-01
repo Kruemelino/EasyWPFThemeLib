@@ -3006,17 +3006,14 @@
                                 <VisualState x:Name="Disabled" />
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Border x:Name="HeaderBorder"
-                                BorderThickness="0,1,0,1"
-                                Padding="2,0,2,0" 
-                                BorderBrush="{DynamicResource ControlDefaultBorderBrush}"
-                                Background="{DynamicResource ControlDefaultBackground}">
+                        <Border x:Name="HeaderBorder">
+                            <!--Farben auf Transparent gesetzt, Pading von 2,0,2,0 auf 0, BorderThickness von 0,1,0,1 auf 0-->
                             <ContentPresenter x:Name="HeaderContent"
-                              Margin="0,0,0,1"
-                              RecognizesAccessKey="True"
-                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                              Margin="0,0,0,1"
+                                              RecognizesAccessKey="True"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                         </Border>
                         <Thumb x:Name="PART_HeaderGripper"
                                HorizontalAlignment="Right"
@@ -3041,10 +3038,8 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <Trigger Property="Role"
-             Value="Floating">
-                <Setter Property="Opacity"
-              Value="0.7" />
+            <Trigger Property="Role" Value="Floating">
+                <Setter Property="Opacity" Value="0.7" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="GridViewColumnHeader">
@@ -3057,20 +3052,17 @@
                     </Setter.Value>
                 </Setter>
             </Trigger>
-            <Trigger Property="Role"
-             Value="Padding">
+            <!--<Trigger Property="Role" Value="Padding">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="GridViewColumnHeader">
                             <Border Name="HeaderBorder"
-                                    BorderThickness="0,1,0,1" 
-                                    Background="{DynamicResource ContainerBackground}" 
-                                    BorderBrush="{DynamicResource ContainerBorderBrush}">
+                                    BorderThickness="0" >
                             </Border>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
-            </Trigger>
+            </Trigger>-->
         </Style.Triggers>
     </Style>
 
@@ -4391,7 +4383,15 @@ Stretch="Uniform"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Rectangle x:Name="Corner" Grid.Column="1" Fill="Transparent" Grid.Row="1"/>
-                        <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" CanContentScroll="{TemplateBinding CanContentScroll}" CanHorizontallyScroll="False" CanVerticallyScroll="False" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Grid.Column="0" Margin="{TemplateBinding Padding}" Grid.Row="0"/>
+                        <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" 
+                                                CanContentScroll="{TemplateBinding CanContentScroll}" 
+                                                CanHorizontallyScroll="False" 
+                                                CanVerticallyScroll="False" 
+                                                ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                                Content="{TemplateBinding Content}" 
+                                                Grid.Column="0" 
+                                                Margin="{TemplateBinding Padding}" 
+                                                Grid.Row="0"/>
                         <ScrollBar x:Name="PART_VerticalScrollBar" AutomationProperties.AutomationId="VerticalScrollBar" 
                                    Cursor="Arrow" Grid.Column="1" Maximum="{TemplateBinding ScrollableHeight}" 
                                    Minimum="0" Grid.Row="0" 

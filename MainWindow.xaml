@@ -135,13 +135,13 @@
             </StackPanel>
         </GroupBox>
 
-        <ListView Grid.Row="2" Grid.Column="7">
+        <ListView Grid.Row="2" Grid.Column="7" Margin="5">
             <ListViewItem Content="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"/>
             <ListViewItem Content="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" IsSelected="True"/>
             <ListViewItem Content="Item 3" IsEnabled="False"/>
             <ListViewItem Content="Item 4"/>
         </ListView>
-        <ListView Grid.Row="2" Grid.Column="8" IsEnabled="False">
+        <ListView Grid.Row="2" Grid.Column="8" IsEnabled="False" Margin="5">
             <ListViewItem Content="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"/>
             <ListViewItem Content="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" IsSelected="True"/>
             <ListViewItem Content="Item 3"/>
@@ -232,5 +232,6 @@
             </TreeViewItem>
 
         </TreeView>
+        
     </Grid>
 </Window>

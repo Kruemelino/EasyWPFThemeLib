@@ -11,7 +11,8 @@ However, extensive revisions and additions have been made:
 Nevertheless, this is a working status. Many controls still need to be revised.
 
 Known issues:
-* DataGrid: Cells in edit mode are displayed incorrectly.  
+* DataGrid: Cells in edit mode are displayed incorrectly.
+* ListView: GridViewColumnHeader are displayed incorrectly (Gripper etc).
 
 ![Light](./doc/Light.png)
 
