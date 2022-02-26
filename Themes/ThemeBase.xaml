@@ -5987,6 +5987,11 @@ Stretch="Uniform"/>
                                 <AdornerDecorator Margin="0,30,0,0">
                                     <ContentPresenter />
                                 </AdornerDecorator>
+                                <ResizeGrip x:Name="WindowResizeGrip" 
+                                            HorizontalAlignment="Right" 
+                                            IsTabStop="False"
+                                            Visibility="Collapsed" 
+                                            VerticalAlignment="Bottom"/>
                                 <Grid Height="30" x:Name="titlebar"
                                       Background="{TemplateBinding BorderBrush}"
                                       VerticalAlignment="Top" Margin="0">
@@ -6050,6 +6055,11 @@ Stretch="Uniform"/>
                             </Grid>
                         </Border>
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="ResizeMode" Value="CanResizeWithGrip">
+                            <Setter Property="Visibility" TargetName="WindowResizeGrip" Value="Visible"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

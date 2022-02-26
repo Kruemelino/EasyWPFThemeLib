@@ -12,7 +12,7 @@
         Private Shared _defaultEditingElementStyle As Style
 
         Public Shared Function GetFix(d As DependencyObject) As Boolean
-            Return d.GetValue(FixProperty)
+            Return CBool(d.GetValue(FixProperty))
         End Function
 
         Public Shared Sub SetFix(d As DependencyObject, value As Boolean)
@@ -20,8 +20,8 @@
         End Sub
 
         Private Shared Sub OnFixChanged(d As DependencyObject, e As DependencyPropertyChangedEventArgs)
-            Dim oldFix As Boolean = e.OldValue
-            Dim newFix As Boolean = d.GetValue(FixProperty)
+            Dim oldFix As Boolean = CBool(e.OldValue)
+            Dim newFix As Boolean = CBool(d.GetValue(FixProperty))
             If d Is Nothing Then Return
             Dim dataGrid As DataGrid = TryCast(d, DataGrid)
             If oldFix Then Unsubscribe(dataGrid)
