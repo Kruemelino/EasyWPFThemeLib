@@ -12,6 +12,35 @@
         <local:MockXViewModel/>
     </Window.DataContext>
 
+    <Window.Resources>
+        <ControlTemplate x:Key="CancelIcon">
+            <Canvas>
+                <Path Fill="{DynamicResource ControlDefaultForeground}"
+                          Width="14.3775"
+                          Height="14"
+                          Canvas.Left="0.311264"
+                          Canvas.Top="0.500005"
+                          Stretch="Fill"
+                          Data="F1 M 111.2,-85.6L 124.2,-85.6L 124.2,-72.6L 111.2,-72.6L 111.2,-85.6 Z M 117.791,-82.3439L 117.791,-80.4506L 112.685,-80.4506L 112.685,-77.8084L 117.791,-77.8084L 117.791,-75.8748L 121.025,-79.1094L 117.791,-82.3439 Z M 121.657,-84.0222L 121.657,-74.0222L 122.657,-74.0222L 122.657,-84.0222L 121.657,-84.0222 Z " />
+            </Canvas>
+        </ControlTemplate>
+    </Window.Resources>
+    
+    <Window.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Test" />
+            <MenuItem Header="Test" IsEnabled="False"/>            
+            <MenuItem Header="Test" IsCheckable="True"/>
+            <Separator />
+            <MenuItem Header="Test" IsCheckable="True"/>
+            <MenuItem Header="Test">
+                <MenuItem.Icon>
+                    <ContentControl Template="{StaticResource CancelIcon}" />
+                </MenuItem.Icon>
+            </MenuItem>
+        </ContextMenu>        
+    </Window.ContextMenu>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition  />
@@ -40,10 +69,10 @@
         <Button Grid.Row="0" Grid.Column="1" Content="Button" Margin="5" IsDefault="True"/>
         <Button Grid.Row="0" Grid.Column="2" Content="Button" Margin="5" IsEnabled="False"/>
 
-        <TextBox Grid.Row="0" Grid.Column="3" Text="Textbox" Margin="5" />
-        <TextBox Grid.Row="0" Grid.Column="4" Text="Textbox" Margin="5" IsEnabled="False"/>
+        <TextBox Grid.Row="0" Grid.Column="3" Text="Textbox" Margin="5" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="0" Grid.Column="4" Text="Textbox" Margin="5" VerticalAlignment="Center" IsEnabled="False"/>
 
-        <ComboBox Grid.Row="0" Grid.Column="5" Text="Combobox" Margin="5">
+        <ComboBox Grid.Row="0" Grid.Column="5" Text="Combobox" Margin="5" VerticalAlignment="Center">
             <ComboBoxItem>ABC</ComboBoxItem>
             <ComboBoxItem>ABC</ComboBoxItem>
             <ComboBoxItem IsSelected="True">ABC</ComboBoxItem>
@@ -51,10 +80,10 @@
             <ComboBoxItem>ABC</ComboBoxItem>
             <ComboBoxItem>ABC</ComboBoxItem>
         </ComboBox>
-        <ComboBox Grid.Row="0" Grid.Column="6" Text="Combobox" Margin="5" IsEnabled="False">
+        <ComboBox Grid.Row="0" Grid.Column="6" Text="Combobox" Margin="5" IsEnabled="False" VerticalAlignment="Center">
             <ComboBoxItem IsSelected="True">Test</ComboBoxItem>
         </ComboBox>
-        <ComboBox Grid.Row="0" Grid.Column="7" Text="Combobox" Margin="5" IsEditable="True">
+        <ComboBox Grid.Row="0" Grid.Column="7" Text="Combobox" Margin="5" IsEditable="True" VerticalAlignment="Center">
             <ComboBoxItem>ABC</ComboBoxItem>
             <ComboBoxItem IsEnabled="False">ABC</ComboBoxItem>
             <ComboBoxItem IsSelected="True">ABC</ComboBoxItem>
@@ -62,7 +91,7 @@
             <ComboBoxItem>ABC</ComboBoxItem>
             <ComboBoxItem>ABC</ComboBoxItem>
         </ComboBox>
-        <ComboBox Grid.Row="0" Grid.Column="8" Text="Combobox" Margin="5" IsEditable="true" IsEnabled="False"/>
+        <ComboBox Grid.Row="0" Grid.Column="8" Text="Combobox" Margin="5" IsEditable="true" IsEnabled="False" VerticalAlignment="Center"/>
 
         <CheckBox Grid.Row="1" Grid.Column="0" Content="Checkbox" Margin="5"/>
         <CheckBox Grid.Row="1" Grid.Column="1" Content="Checkbox" Margin="5" IsChecked="True"/>
@@ -70,8 +99,8 @@
         <CheckBox Grid.Row="1" Grid.Column="3" Content="Checkbox" Margin="5" IsChecked="True" IsEnabled="False"/>
         <CheckBox Grid.Row="1" Grid.Column="4" Content="Checkbox" Margin="5" IsChecked="{x:Null}" IsEnabled="False"/>
 
-        <PasswordBox Grid.Row="1" Grid.Column="5" Margin="5" Password="123456"/>
-        <PasswordBox Grid.Row="1" Grid.Column="6" Margin="5" Password="123456" IsEnabled="False"/>
+        <PasswordBox Grid.Row="1" Grid.Column="5" Margin="5" Password="123456" VerticalAlignment="Center"/>
+        <PasswordBox Grid.Row="1" Grid.Column="6" Margin="5" Password="123456" VerticalAlignment="Center" IsEnabled="False"/>
 
         <Label Grid.Row="2" Grid.Column="5" Margin="5" Content="Label"/>
         <Label Grid.Row="2" Grid.Column="6" Margin="5" Content="Label" IsEnabled="False"/>
@@ -190,9 +219,8 @@
         <DataGrid Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="5"  IsEnabled="False" 
                   ItemsSource="{Binding DummyDataGridData, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
 
-        <DatePicker Grid.Row="4" Grid.Column="6" Margin="5" Grid.ColumnSpan="1" />
-        <DatePicker Grid.Row="5" Grid.Column="6
-                    " Margin="5" Grid.ColumnSpan="1"  IsEnabled="False"/>
+        <DatePicker Grid.Row="4" Grid.Column="6" VerticalAlignment="Center" Margin="5" Grid.ColumnSpan="1" />
+        <DatePicker Grid.Row="5" Grid.Column="6" VerticalAlignment="Top" Margin="5" Grid.ColumnSpan="1"  IsEnabled="False"/>
 
         <Calendar  Grid.Row="6" Grid.Column="0" Margin="5" Grid.ColumnSpan="1" Grid.RowSpan="3"                    
                    SelectionMode="MultipleRange">
@@ -232,6 +260,41 @@
             </TreeViewItem>
 
         </TreeView>
-        
+
+        <Menu Grid.Row="6" Grid.Column="2" VerticalAlignment="Top" Grid.ColumnSpan="2">
+            <MenuItem Header="Test" IsEnabled="False"/>
+            <Separator />
+            <MenuItem Header="Test">
+                <MenuItem Header="SubMenu 1" >
+                    <MenuItem.Icon>
+                        <ContentControl Template="{StaticResource CancelIcon}" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="SubMenu 2" />
+                <Separator />
+                <MenuItem Header="SubMenu 3"/>
+                <MenuItem Header="SubMenu 4" IsEnabled="False"/>
+                <MenuItem Header="SubMenu 5">
+                    <MenuItem Header="SubSubMenu 1" />
+                    <MenuItem Header="SubSubMenu 2" >
+                        <MenuItem.Icon>
+                            <ContentControl Template="{StaticResource CancelIcon}" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="MitIcon">
+                <MenuItem.Icon>
+                    <ContentControl Template="{StaticResource CancelIcon}" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem>
+                <MenuItem IsEnabled="False">
+                    <MenuItem>
+
+                    </MenuItem>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
     </Grid>
 </Window>
