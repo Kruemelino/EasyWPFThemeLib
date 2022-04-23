@@ -6125,14 +6125,15 @@ Stretch="Uniform"/>
                                                 Click="AutoMinimize_Event">
                                             <Grid Width="12" Height="12">
                                                 <Rectangle StrokeThickness="1" 
-                                                           Stroke="{DynamicResource ControlSelectedForeground}"
+                                                           Stroke="{DynamicResource ControlGlythColor}"
                                                            Margin="3,0,0,3"/>
                                                 <Rectangle StrokeThickness="1" 
                                                            Fill="{TemplateBinding BorderBrush}"
-                                                           Stroke="{DynamicResource ControlSelectedForeground}"
+                                                           Stroke="{DynamicResource ControlGlythColor}"
                                                            Margin="0 3 3 0"/>
                                             </Grid>
                                         </Button>
+                                        
                                         <Button x:Name="btnClose"
                                                 Background="Transparent"
                                                 BorderBrush="Transparent"
