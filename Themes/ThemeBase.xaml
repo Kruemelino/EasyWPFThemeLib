@@ -20,25 +20,27 @@
 
     <!--#region Brushes, which are same in the palettes-->
     <!--AccentMainBrush is blue by default and it is the main accent brush for the theme-->
-    <Color x:Key="AccentColor"                  >#FF3399FF</Color>
+    <Color x:Key="AccentColor"                   >#FF3399FF</Color>
 
     <!--AccentDarkBrush is blue by default and it is the darker accent brush for the theme-->
-    <Color x:Key="AccentDarkColor"              >#FF007ACC</Color>
-    
+    <Color x:Key="AccentDarkColor"               >#FF007ACC</Color>
+    <Color x:Key="AccentMouseOverColor"          >#FF2F96ED</Color>
+
     <!--SelectedBrush is white by default and is the main color for text or paths which are over elements with accent background-->
-    <Color x:Key="SelectedColor"                >#FFFFFFFF</Color>
+    <Color x:Key="SelectedColor"                 >#FFFFFFFF</Color>
 
     <!--ValidatonBrush is red by default and it is the brush used for validation where such is applicable in our controls-->
-    <Color x:Key="ValidationColor"              >#FFFF3333</Color>
+    <Color x:Key="ValidationColor"               >#FFFF3333</Color>
 
-    <Color x:Key="CloseButtonSelectionColor"    >#FF94444A</Color>
-    <Color x:Key="CloseButtonMouseOverColor"    >#FFFF3333</Color>
+    <Color x:Key="CloseButtonSelectionColor"     >#FF94444A</Color>
+    <Color x:Key="CloseButtonMouseOverColor"     >#FFFF3333</Color>
     
     <!--AccentMainBrush is blue by default and it is the main accent brush for the theme-->
     <SolidColorBrush x:Key="AccentBrush"               Color="{StaticResource AccentColor}" />
 
     <!--AccentDarkBrush is blue by default and it is the darker accent brush for the theme-->
     <SolidColorBrush x:Key="AccentDarkBrush"           Color="{StaticResource AccentDarkColor}" />
+    <SolidColorBrush x:Key="AccentMouseOverBrush"      Color="{StaticResource AccentMouseOverColor}" />
 
     <!--SelectedBrush is white by default and is the main color for text or paths which are over elements with accent background-->
     <SolidColorBrush x:Key="ControlSelectedForeground" Color="{StaticResource SelectedColor}" />
@@ -139,6 +141,15 @@
                             <Setter Property="Background" TargetName="border" Value="{DynamicResource ControlPrimaryMouseOverBackground}"/>
                             <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource ControlPrimaryMouseOverBorderBrush}"/>
                         </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                                <Condition Property="IsDefault" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource ControlSelectedBorderBrush}"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter Property="Background" TargetName="border" Value="{DynamicResource ControlPrimarySelectedBackground}"/>
                             <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource ControlPrimarySelectedBorderBrush}"/>
@@ -6091,7 +6102,11 @@ Stretch="Uniform"/>
                                       Background="{TemplateBinding BorderBrush}"
                                       VerticalAlignment="Top" Margin="0">
                                     <DockPanel Margin="0,0,130,0">
-                                        <Image HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4,4,0,0" Source="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}}" Height="24"  />
+                                        <Image HorizontalAlignment="Left" 
+                                               VerticalAlignment="Top" 
+                                               Margin="4,4,0,0" 
+                                               Source="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}}" 
+                                               Height="24"  />
                                         <TextBlock Margin="5,3"
                                                    VerticalAlignment="Center"
                                                    HorizontalAlignment="Stretch"
@@ -6102,36 +6117,54 @@ Stretch="Uniform"/>
                                                    Grid.Column="1" TextAlignment="Left"/>
                                     </DockPanel>
                                     <StackPanel Orientation="Horizontal"
-                                        Grid.Column="0" HorizontalAlignment="Right">
+                                                Grid.Column="0" 
+                                                HorizontalAlignment="Right">
                                         <Button x:Name="btnMinimize"
                                                 Background="Transparent"
                                                 BorderBrush="Transparent"
                                                 Width="40"
+                                                Template="{DynamicResource WindowButton}"
                                                 VerticalContentAlignment="Bottom"
                                                 WindowChrome.IsHitTestVisibleInChrome="True" 
                                                 Click="Minimize_Event">
                                             <Rectangle Width="10" 
                                                        VerticalAlignment="Center" 
                                                        Margin="1 1 0 0" 
-                                                       Stroke="{DynamicResource ControlGlythColor}" 
+                                                       Stroke="{StaticResource ControlSelectedForeground}" 
                                                        StrokeThickness="1"/>
                                         </Button>
 
+                                        <Button x:Name="btnMaximize"
+                                                Background="Transparent"
+                                                BorderBrush="Transparent"
+                                                Width="40"
+                                                Template="{DynamicResource WindowButton}"
+                                                VerticalContentAlignment="Bottom"
+                                                WindowChrome.IsHitTestVisibleInChrome="True" 
+                                                Click="AutoMinimize_Event">
+                                            <Rectangle Width="10" Height="10"
+                                                       VerticalAlignment="Center" 
+                                                       Margin="1 1 0 0" 
+                                                       Stroke="{StaticResource ControlSelectedForeground}" 
+                                                       StrokeThickness="1"/>
+                                        </Button>
+                                        
                                         <Button x:Name="btnRestore"
                                                 Background="Transparent"
                                                 BorderBrush="Transparent"
                                                 Width="40"
+                                                Template="{DynamicResource WindowButton}"
                                                 WindowChrome.IsHitTestVisibleInChrome="True" 
                                                 Click="AutoMinimize_Event">
                                             <Grid Width="12" Height="12">
                                                 <Rectangle StrokeThickness="1" 
-                                                           Stroke="{DynamicResource ControlGlythColor}"
+                                                           Stroke="{StaticResource ControlSelectedForeground}"
                                                            Margin="3,0,0,3"/>
                                                 <Rectangle StrokeThickness="1" 
                                                            Fill="{TemplateBinding BorderBrush}"
-                                                           Stroke="{DynamicResource ControlGlythColor}"
+                                                           Stroke="{StaticResource ControlSelectedForeground}"
                                                            Margin="0 3 3 0"/>
-                                            </Grid>
+                                            </Grid>                                            
                                         </Button>
                                         
                                         <Button x:Name="btnClose"
@@ -6142,8 +6175,8 @@ Stretch="Uniform"/>
                                                 WindowChrome.IsHitTestVisibleInChrome="True" 
                                                 Click="CloseWindow_Event">
                                             <Grid Margin="0 1 0 0">
-                                                <Line X1="0" Y1="0" X2="11" Y2="11" Stroke="{DynamicResource ControlGlythColor}" StrokeThickness="2" />
-                                                <Line X1="0" Y2="0" Y1="11" X2="11" Stroke="{DynamicResource ControlGlythColor}" StrokeThickness="2" />
+                                                <Line X1="0" Y1="0" X2="11" Y2="11" Stroke="{StaticResource ControlSelectedForeground}" StrokeThickness="2" />
+                                                <Line X1="0" Y2="0" Y1="11" X2="11" Stroke="{StaticResource ControlSelectedForeground}" StrokeThickness="2" />
                                             </Grid>
                                         </Button>
                                     </StackPanel>
@@ -6154,6 +6187,14 @@ Stretch="Uniform"/>
                     <ControlTemplate.Triggers>
                         <Trigger Property="ResizeMode" Value="CanResizeWithGrip">
                             <Setter Property="Visibility" TargetName="WindowResizeGrip" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="WindowState" Value="Maximized">
+                            <Setter TargetName="btnMaximize" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="btnRestore" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="WindowState" Value="Normal">
+                            <Setter TargetName="btnMaximize" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="btnRestore" Property="Visibility" Value="Collapsed" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -6218,13 +6259,14 @@ Stretch="Uniform"/>
                                                 Background="Transparent"
                                                 BorderBrush="Transparent"
                                                 Width="40"
+                                                Template="{DynamicResource WindowButton}"
                                                 VerticalContentAlignment="Bottom"
                                                 WindowChrome.IsHitTestVisibleInChrome="True" 
                                                 Click="Minimize_Event">
                                             <Rectangle Width="10"
                                                        VerticalAlignment="Center"
                                                        Margin="1 1 0 0" 
-                                                       Stroke="{DynamicResource ControlSelectedForeground}"
+                                                       Stroke="{StaticResource ControlSelectedForeground}"
                                                        StrokeThickness="1"/>
                                         </Button>
                                         <Button x:Name="btnClose"
@@ -6235,9 +6277,9 @@ Stretch="Uniform"/>
                                                 WindowChrome.IsHitTestVisibleInChrome="True" 
                                                 Click="CloseWindow_Event">
                                             <Grid Margin="0 1 0 0">
-                                                <Line X1="0" Y1="0" X2="11" Y2="11" Stroke="{DynamicResource ControlSelectedForeground}" 
+                                                <Line X1="0" Y1="0" X2="11" Y2="11" Stroke="{StaticResource ControlSelectedForeground}" 
                                                       StrokeThickness="1" />
-                                                <Line X1="0" Y2="0" Y1="11" X2="11" Stroke="{DynamicResource ControlSelectedForeground}" 
+                                                <Line X1="0" Y2="0" Y1="11" X2="11" Stroke="{StaticResource ControlSelectedForeground}" 
                                                       StrokeThickness="1" />
                                             </Grid>
                                         </Button>
@@ -6320,8 +6362,45 @@ Stretch="Uniform"/>
                 <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{DynamicResource ControlDisabledGlythColor}"/>
             </Trigger>
         </ControlTemplate.Triggers>
+    </ControlTemplate>    
+
+    <!-- Gives the button highlight colour properties when mouseover/clicked -->
+    <ControlTemplate x:Key="WindowButton" TargetType="{x:Type Button}">
+        <Border x:Name="border" 
+                BorderBrush="{TemplateBinding BorderBrush}" 
+                BorderThickness="{TemplateBinding BorderThickness}" 
+                Background="{TemplateBinding Background}" 
+                SnapsToDevicePixels="True"
+                HorizontalAlignment="Stretch" 
+                VerticalAlignment="Stretch">
+            <ContentPresenter x:Name="contentPresenter" 
+                              Focusable="False" 
+                              Margin="{TemplateBinding Padding}" 
+                              RecognizesAccessKey="True" 
+                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                              VerticalAlignment="Center"
+                              HorizontalAlignment="Center"/>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsDefaulted" Value="True">
+                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource ControlMouseOverBorderBrush}"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" TargetName="border" Value="{StaticResource AccentMouseOverBrush}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentMouseOverBrush}"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" TargetName="border" Value="{StaticResource AccentBrush}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AccentBrush}"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" TargetName="border" Value="{DynamicResource ControlBrightDefaultBackground}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource ControlBrightDefaultBorderBrush}"/>
+                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{DynamicResource ControlDisabledGlythColor}"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
     </ControlTemplate>
     <!--#endregion-->
-
+    <!--#endregion-->
     <!--#endregion-->
 </ResourceDictionary>
