@@ -2599,73 +2599,59 @@
     <!--#endregion-->
 
     <!--#region GroupBox-->
-    <Style TargetType="{x:Type GroupBox}" x:Key="{x:Type GroupBox}">
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource ControlDefaultBorderBrush}"/>
-        <Setter Property="Foreground" Value="{DynamicResource ControlDefaultForeground}"/>
+    <Style TargetType="{x:Type GroupBox}">
+        <Setter Property="BorderBrush" Value="{DynamicResource ControlDefaultBackground}"/>
         <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
-        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
-        <Setter Property="ScrollViewer.CanContentScroll" Value="False"/>
-        <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
-        <Setter Property="Template" >
+        <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type GroupBox}">
                     <Grid SnapsToDevicePixels="True">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="4"/>
+                            <ColumnDefinition Width="6"/>
                             <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition Width="4"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="6"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" MinHeight="20"/>
-                            <RowDefinition/>
-                            <RowDefinition Height="4"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="6"/>
                         </Grid.RowDefinitions>
-                        
+
                         <Border BorderBrush="{TemplateBinding BorderBrush}" 
                                 BorderThickness="{TemplateBinding BorderThickness}" 
                                 Grid.ColumnSpan="4" 
-                                CornerRadius="0" 
                                 Grid.Row="0" 
-                                Grid.RowSpan="3" >
+                                Grid.RowSpan="4">
                         </Border>
 
-                        <Border x:Name="Header" Padding="3,0"
-                                Grid.Column="0" 
-                                Grid.ColumnSpan="4" 
+                        <Border Background="{TemplateBinding BorderBrush}" 
+                                Grid.Row="0"
+                                Grid.ColumnSpan="4"/>
+
+                        <Border x:Name="Header" 
+                                Grid.Column="1" 
+                                Padding="3,1,3,0" 
                                 Grid.Row="0" 
-                                Grid.RowSpan="1" Background="{TemplateBinding BorderBrush}" >
-                            <ContentPresenter x:Name="contentPresenter"
-                                              VerticalAlignment="Center" 
-                                              ContentSource="Header" 
+                                Grid.RowSpan="2">
+                            <ContentPresenter ContentSource="Header" 
                                               RecognizesAccessKey="True" 
-                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>        
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                         </Border>
-                        
-                        <ScrollViewer Focusable="False" 
-                                      Padding="{TemplateBinding Padding}"
-                                      Grid.ColumnSpan="2" 
-                                      Grid.Column="1" 
-                                      Margin="0,3,0,0" 
-                                      Grid.Row="1"
-                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                            <ContentPresenter /> 
-                        </ScrollViewer>
-                        
-                    </Grid>
 
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{DynamicResource ControlDisabledForeground}"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
+                        <ContentPresenter Grid.ColumnSpan="2" 
+                                          Grid.Column="1" 
+                                          Margin="{TemplateBinding Padding}" 
+                                          Grid.Row="2" 
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-    
+    <!--#endregion-->
+
     <!-- Original one -->
     <Style x:Key="OriginalGroupBox" TargetType="{x:Type GroupBox}">
         <Setter Property="BorderBrush" Value="{DynamicResource ControlDefaultBackground}"/>
