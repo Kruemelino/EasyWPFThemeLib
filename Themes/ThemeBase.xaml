@@ -936,7 +936,7 @@
     
     <!--#region Colorpicker-->
     <!--https://github.com/PixiEditor/ColorPicker-->
-    <Style TargetType="UserControl" x:Key="DefaultColorPickerStyle">
+    <Style TargetType="UserControl" x:Key="DefaultPixiColorPickerStyle">
         <Style.Resources>
             <ResourceDictionary>
                 <Style TargetType="Grid" >
