@@ -933,24 +933,7 @@
         </Setter>
     </Style>
     <!--#endregion-->
-    
-    <!--#region Colorpicker-->
-    <!--https://github.com/PixiEditor/ColorPicker-->
-    <Style TargetType="UserControl" x:Key="DefaultPixiColorPickerStyle">
-        <Style.Resources>
-            <ResourceDictionary>
-                <Style TargetType="Grid" >
-                    <Style.Triggers>
-                        <Trigger Property="Name" Value="MainGrid">
-                            <Setter Property="Background" Value="{DynamicResource ContainerBackground}" />
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-             </ResourceDictionary>
-        </Style.Resources>
-    </Style>
-    <!--#endregion-->
-    
+        
     <!--#region ComboBox and ComboBoxItems-->
     <Style x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
         <!--<Setter Property="Background" Value="{DynamicResource ControlDefaultBackground}"/>
