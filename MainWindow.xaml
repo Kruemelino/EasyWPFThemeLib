@@ -164,7 +164,7 @@
             </StackPanel>
         </GroupBox>
 
-        <ListView Grid.Row="2" Grid.Column="7" Margin="5">
+        <ListView Grid.Row="2" Grid.Column="7" Margin="5" >
             <ListViewItem Content="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"/>
             <ListViewItem Content="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" IsSelected="True"/>
             <ListViewItem Content="Item 3" IsEnabled="False"/>
@@ -176,6 +176,8 @@
             <ListViewItem Content="Item 3"/>
             <ListViewItem Content="Item 4"/>
         </ListView>
+
+        <ListView Grid.Row="6" Grid.Column="8" Margin="5" Grid.RowSpan="3"/>
 
         <ToggleButton Grid.Row="3" Grid.Column="6" Content="Toggle" Margin="5"/>
         <ToggleButton Grid.Row="3" Grid.Column="7" Content="Toggle" Margin="5" IsChecked="True"/>
